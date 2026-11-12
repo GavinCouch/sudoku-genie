@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="960" viewBox="0 0 1440 960">
+  <defs>
+    <style>
+      .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+      .mono { font-family: SFMono-Regular, Menlo, Consolas, monospace; }
+    </style>
+  </defs>
+  <rect width="1440" height="960" fill="#f3f6fa"/>
+  <rect x="0" y="0" width="1440" height="76" fill="#17243a"/>
+  <circle cx="54" cy="38" r="15" fill="#77c89d"/>
+  <path d="M46 38l6 6 11-13" fill="none" stroke="#17243a" stroke-width="3"/>
+  <text x="82" y="45" class="sans" font-size="22" font-weight="700" fill="#fff">Prototype Code Review</text>
+  <text x="1384" y="45" class="sans" font-size="15" text-anchor="end" fill="#c5cfdd">LOCAL STATIC REVIEW · AFTER</text>
+
+  <text x="80" y="142" class="sans" font-size="14" font-weight="700" letter-spacing="1.5" fill="#65738a">SUDOKU GENIE / UPDATED CODEBASE</text>
+  <text x="80" y="191" class="sans" font-size="38" font-weight="750" fill="#17243a">Review findings</text>
+  <rect x="1050" y="124" width="310" height="54" rx="27" fill="#e6f6ec" stroke="#a8d9bb"/>
+  <circle cx="1080" cy="151" r="7" fill="#25834b"/>
+  <text x="1100" y="157" class="sans" font-size="17" font-weight="700" fill="#176438">0 OPEN · 2 RESOLVED</text>
+
+  <rect x="80" y="220" width="1280" height="70" rx="12" fill="#fff" stroke="#dce3ed"/>
+  <text x="108" y="249" class="sans" font-size="14" font-weight="700" fill="#66758b">REPOSITORY</text>
+  <text x="108" y="273" class="sans" font-size="17" font-weight="600" fill="#17243a">GavinCouch/sudoku-genie</text>
+  <line x1="487" y1="236" x2="487" y2="274" stroke="#e1e6ef"/>
+  <text x="520" y="249" class="sans" font-size="14" font-weight="700" fill="#66758b">BRANCH</text>
+  <text x="520" y="273" class="mono" font-size="17" fill="#17243a">design</text>
+  <line x1="770" y1="236" x2="770" y2="274" stroke="#e1e6ef"/>
+  <text x="804" y="249" class="sans" font-size="14" font-weight="700" fill="#66758b">SOURCE STATE</text>
+  <text x="804" y="273" class="sans" font-size="17" fill="#17243a">Post-fix candidate</text>
+  <line x1="1095" y1="236" x2="1095" y2="274" stroke="#e1e6ef"/>
+  <text x="1128" y="249" class="sans" font-size="14" font-weight="700" fill="#66758b">FILES REVIEWED</text>
+  <text x="1128" y="273" class="sans" font-size="17" fill="#17243a">app.js</text>
+
+  <rect x="80" y="318" width="1280" height="246" rx="14" fill="#fff" stroke="#dce3ed"/>
+  <rect x="80" y="318" width="7" height="246" rx="4" fill="#2d9a5a"/>
+  <rect x="108" y="342" width="92" height="25" rx="12" fill="#e6f6ec"/>
+  <text x="154" y="360" class="sans" font-size="13" font-weight="700" text-anchor="middle" fill="#176438">RESOLVED</text>
+  <text x="218" y="362" class="sans" font-size="22" font-weight="700" fill="#17243a">Fisher–Yates shuffle replaces random sort</text>
+  <text x="1320" y="360" class="mono" font-size="14" text-anchor="end" fill="#65738a">app.js · shuffled()</text>
+  <text x="108" y="401" class="sans" font-size="16" fill="#42516a">Each pass selects a random index from the unshuffled prefix and swaps it into the current</text>
+  <text x="108" y="425" class="sans" font-size="16" fill="#42516a">position, so the inconsistent sort comparator is gone.</text>
+  <rect x="108" y="448" width="1224" height="76" rx="8" fill="#f5f7fa"/>
+  <text x="132" y="480" class="mono" font-size="16" fill="#176438">for (let index = result.length - 1; index &gt; 0; index -= 1) {</text>
+  <text x="132" y="508" class="mono" font-size="16" fill="#176438">  const swapIndex = Math.floor(Math.random() * (index + 1));</text>
+
+  <rect x="80" y="588" width="1280" height="246" rx="14" fill="#fff" stroke="#dce3ed"/>
+  <rect x="80" y="588" width="7" height="246" rx="4" fill="#2d9a5a"/>
+  <rect x="108" y="612" width="92" height="25" rx="12" fill="#e6f6ec"/>
+  <text x="154" y="630" class="sans" font-size="13" font-weight="700" text-anchor="middle" fill="#176438">RESOLVED</text>
+  <text x="218" y="632" class="sans" font-size="22" font-weight="700" fill="#17243a">New games clear Notes mode and its button state</text>
+  <text x="1320" y="630" class="mono" font-size="14" text-anchor="end" fill="#65738a">app.js · newGame()</text>
+  <text x="108" y="671" class="sans" font-size="16" fill="#42516a">newGame() now resets notesMode and aria-pressed. Difficulty changes and Reset both use</text>
+  <text x="108" y="695" class="sans" font-size="16" fill="#42516a">that same initialization path, so a new puzzle starts in normal entry mode.</text>
+  <rect x="108" y="718" width="1224" height="76" rx="8" fill="#f5f7fa"/>
+  <text x="132" y="750" class="mono" font-size="16" fill="#176438">function newGame(level) {</text>
+  <text x="132" y="778" class="mono" font-size="16" fill="#176438">  notesMode = false;  notesButton.setAttribute('aria-pressed', 'false');</text>
+
+  <line x1="80" y1="872" x2="1360" y2="872" stroke="#dce3ed"/>
+  <text x="80" y="908" class="sans" font-size="14" fill="#65738a">Review scope: game logic and state transitions · Both original findings are resolved in app.js.</text>
+  <text x="1360" y="908" class="sans" font-size="14" text-anchor="end" fill="#65738a">12 Nov 2026</text>
+</svg>

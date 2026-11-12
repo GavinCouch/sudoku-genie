@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="960" viewBox="0 0 1440 960">
+  <defs>
+    <style>
+      .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+      .mono { font-family: SFMono-Regular, Menlo, Consolas, monospace; }
+    </style>
+  </defs>
+  <rect width="1440" height="960" fill="#f3f6fa"/>
+  <rect x="0" y="0" width="1440" height="76" fill="#17243a"/>
+  <circle cx="54" cy="38" r="15" fill="#8b9df4"/>
+  <path d="M47 38h14M54 31v14" stroke="#17243a" stroke-width="3"/>
+  <text x="82" y="45" class="sans" font-size="22" font-weight="700" fill="#fff">Prototype Code Review</text>
+  <text x="1384" y="45" class="sans" font-size="15" text-anchor="end" fill="#c5cfdd">LOCAL STATIC REVIEW · BEFORE</text>
+
+  <text x="80" y="142" class="sans" font-size="14" font-weight="700" letter-spacing="1.5" fill="#65738a">SUDOKU GENIE / ORIGINAL CODEBASE</text>
+  <text x="80" y="191" class="sans" font-size="38" font-weight="750" fill="#17243a">Review findings</text>
+  <rect x="1100" y="124" width="260" height="54" rx="27" fill="#fff0e5" stroke="#f1c7a7"/>
+  <circle cx="1130" cy="151" r="7" fill="#c45416"/>
+  <text x="1150" y="157" class="sans" font-size="17" font-weight="700" fill="#9d3b0e">2 FINDINGS · 0 RESOLVED</text>
+
+  <rect x="80" y="220" width="1280" height="70" rx="12" fill="#fff" stroke="#dce3ed"/>
+  <text x="108" y="249" class="sans" font-size="14" font-weight="700" fill="#66758b">REPOSITORY</text>
+  <text x="108" y="273" class="sans" font-size="17" font-weight="600" fill="#17243a">GavinCouch/sudoku-genie</text>
+  <line x1="487" y1="236" x2="487" y2="274" stroke="#e1e6ef"/>
+  <text x="520" y="249" class="sans" font-size="14" font-weight="700" fill="#66758b">BRANCH</text>
+  <text x="520" y="273" class="mono" font-size="17" fill="#17243a">design</text>
+  <line x1="770" y1="236" x2="770" y2="274" stroke="#e1e6ef"/>
+  <text x="804" y="249" class="sans" font-size="14" font-weight="700" fill="#66758b">BASELINE</text>
+  <text x="804" y="273" class="mono" font-size="17" fill="#17243a">a0ad7b4</text>
+  <line x1="1030" y1="236" x2="1030" y2="274" stroke="#e1e6ef"/>
+  <text x="1064" y="249" class="sans" font-size="14" font-weight="700" fill="#66758b">FILES REVIEWED</text>
+  <text x="1064" y="273" class="sans" font-size="17" fill="#17243a">app.js</text>
+
+  <rect x="80" y="318" width="1280" height="246" rx="14" fill="#fff" stroke="#dce3ed"/>
+  <rect x="80" y="318" width="7" height="246" rx="4" fill="#dc762e"/>
+  <rect x="108" y="342" width="54" height="25" rx="12" fill="#fff0e5"/>
+  <text x="135" y="360" class="sans" font-size="13" font-weight="700" text-anchor="middle" fill="#9d3b0e">P2</text>
+  <text x="180" y="362" class="sans" font-size="22" font-weight="700" fill="#17243a">Random comparator creates a biased shuffle</text>
+  <text x="1320" y="360" class="mono" font-size="14" text-anchor="end" fill="#65738a">app.js · shuffled()</text>
+  <text x="108" y="401" class="sans" font-size="16" fill="#42516a">Using randomness as a sort comparator does not define a consistent ordering. It can skew the</text>
+  <text x="108" y="425" class="sans" font-size="16" fill="#42516a">permutations used for row groups, columns, digits, and blank-cell selection.</text>
+  <rect x="108" y="448" width="1224" height="76" rx="8" fill="#f5f7fa"/>
+  <text x="132" y="480" class="mono" font-size="17" fill="#9c2d2d">return [...items].sort(() =&gt; Math.random() - 0.5);</text>
+  <text x="132" y="508" class="sans" font-size="14" font-weight="600" fill="#65738a">Suggested fix: use an in-place Fisher–Yates pass on a copied array.</text>
+
+  <rect x="80" y="588" width="1280" height="246" rx="14" fill="#fff" stroke="#dce3ed"/>
+  <rect x="80" y="588" width="7" height="246" rx="4" fill="#dc762e"/>
+  <rect x="108" y="612" width="54" height="25" rx="12" fill="#fff0e5"/>
+  <text x="135" y="630" class="sans" font-size="13" font-weight="700" text-anchor="middle" fill="#9d3b0e">P2</text>
+  <text x="180" y="632" class="sans" font-size="22" font-weight="700" fill="#17243a">Starting a new game retains Notes mode</text>
+  <text x="1320" y="630" class="mono" font-size="14" text-anchor="end" fill="#65738a">app.js · newGame()</text>
+  <text x="108" y="671" class="sans" font-size="16" fill="#42516a">Changing difficulty rebuilds the puzzle but leaves notesMode and the button’s aria-pressed state</text>
+  <text x="108" y="695" class="sans" font-size="16" fill="#42516a">untouched. A fresh board can therefore begin in the prior game’s editing mode.</text>
+  <rect x="108" y="718" width="1224" height="76" rx="8" fill="#f5f7fa"/>
+  <text x="132" y="750" class="mono" font-size="16" fill="#526078">function newGame(level) {</text>
+  <text x="132" y="778" class="mono" font-size="16" fill="#526078">  activeLevel = level;  // notes state is not reset here</text>
+
+  <line x1="80" y1="872" x2="1360" y2="872" stroke="#dce3ed"/>
+  <text x="80" y="908" class="sans" font-size="14" fill="#65738a">Review scope: game logic and state transitions · Findings are tied to the original source above.</text>
+  <text x="1360" y="908" class="sans" font-size="14" text-anchor="end" fill="#65738a">12 Nov 2026</text>
+</svg>

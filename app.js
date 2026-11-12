@@ -16,7 +16,12 @@ let activeLevel = 'easy';
 const blankCount = { easy: 38, medium: 48, hard: 56 };
 
 function shuffled(items) {
-  return [...items].sort(() => Math.random() - 0.5);
+  const result = [...items];
+  for (let index = result.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [result[index], result[swapIndex]] = [result[swapIndex], result[index]];
+  }
+  return result;
 }
 
 function makeSolution() {
@@ -28,6 +33,8 @@ function makeSolution() {
 
 function newGame(level) {
   activeLevel = level;
+  notesMode = false;
+  notesButton.setAttribute('aria-pressed', 'false');
   solution = makeSolution().flat();
   puzzle = solution.flat();
   shuffled([...Array(81).keys()]).slice(0, blankCount[level]).forEach(index => { puzzle[index] = null; });
@@ -96,8 +103,6 @@ notesButton.addEventListener('click', () => {
   notesButton.setAttribute('aria-pressed', notesMode);
 });
 resetButton.addEventListener('click', () => {
-  notesMode = false;
-  notesButton.setAttribute('aria-pressed', 'false');
   newGame(activeLevel);
 });
 modeButtons.forEach(button => button.addEventListener('click', () => newGame(button.dataset.level)));
